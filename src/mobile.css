@@ -1,0 +1,248 @@
+
+/* LifeOS 2.7 — premium mobile layout */
+
+.mobile-more-toggle,
+.mobile-more-sheet,
+.mobile-more-backdrop {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .shell {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .layout {
+    display: block;
+    padding-top: 15px;
+  }
+
+  /* Fixed four-item bottom navigation */
+  .sidebar {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-height: 76px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 3px;
+    margin: 0;
+    padding: 8px 7px calc(8px + env(safe-area-inset-bottom, 0px));
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 22px 22px 0 0;
+    background: color-mix(in srgb, var(--panel) 96%, transparent);
+    box-shadow: 0 -12px 34px rgba(0, 0, 0, .24);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .sidebar .nav-label,
+  .sidebar .nav-divider,
+  .sidebar .sidebar-note {
+    display: none !important;
+  }
+
+  .sidebar > [data-page="food"],
+  .sidebar > [data-page="workouts"],
+  .sidebar > [data-page="weight"],
+  .sidebar > [data-page="expenses"],
+  .sidebar > [data-page="backup"] {
+    display: none !important;
+  }
+
+  .sidebar > [data-page="dashboard"],
+  .sidebar > [data-page="schedule"],
+  .sidebar > [data-page="habits"],
+  .sidebar > .mobile-more-toggle {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 60px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 2px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .sidebar .nav-item .nav-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    border-radius: 10px;
+  }
+
+  .sidebar .nav-item .nav-icon .ui-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .sidebar .nav-item.active {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 22%, var(--line));
+    background: color-mix(in srgb, var(--accent) 14%, var(--panel));
+    box-shadow: none;
+  }
+
+  .sidebar .nav-item.active:after {
+    display: none;
+  }
+
+  .sidebar .mobile-more-toggle[aria-expanded="true"] {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, var(--panel));
+  }
+
+  /* More menu overlay */
+  .mobile-more-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(3, 6, 16, .55);
+    backdrop-filter: blur(3px);
+  }
+
+  .mobile-more-sheet:not([hidden]) {
+    display: block;
+    position: fixed;
+    z-index: 102;
+    left: 10px;
+    right: 10px;
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    max-height: min(70vh, 540px);
+    overflow-y: auto;
+    padding: 20px 16px 16px;
+    border: 1px solid var(--line);
+    border-radius: 26px 26px 18px 18px;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, .4);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+    animation: lifeos-more-enter .2s ease-out;
+  }
+
+  .mobile-more-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .mobile-more-heading strong {
+    font-size: 22px;
+    letter-spacing: -.5px;
+  }
+
+  .mobile-more-heading .small-text {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .mobile-more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mobile-more-item {
+    display: flex;
+    min-width: 0;
+    min-height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 6px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel2);
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.3;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .mobile-more-item:active {
+    transform: scale(.98);
+  }
+
+  .more-symbol {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--accent) 20%, var(--panel));
+    font-size: 22px;
+  }
+
+  .main-content {
+    min-width: 0;
+    padding-bottom: 24px;
+  }
+
+  .footer {
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-more-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mobile-more-item {
+    min-height: 86px;
+  }
+
+  .sidebar > [data-page="dashboard"],
+  .sidebar > [data-page="schedule"],
+  .sidebar > [data-page="habits"],
+  .sidebar > .mobile-more-toggle {
+    font-size: 10px;
+  }
+}
+
+@keyframes lifeos-more-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
